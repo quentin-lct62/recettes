@@ -1,0 +1,134 @@
+body {
+    background-color: #f8f9fa; 
+    font-family: 'Arial', sans-serif; 
+}
+
+h1 {
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
+    color: #fff; /* Couleur blanche pour le titre */
+}
+
+header {
+    padding: 20px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+    border: none; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); 
+}
+
+.card-img-top {
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.btn {
+    border-radius: 20px; 
+    padding: 10px 20px; 
+}
+
+.btn-primary {
+    background-color: #007bff; 
+    border: none; 
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; 
+}
+
+.toast {
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Styles pour la barre de recherche */
+.input-group {
+    position: relative;
+    max-width: 600px; 
+    margin: 0 auto; 
+    border-radius: 25px; 
+    overflow: hidden; 
+}
+
+.input-group input {
+    border: none; 
+    border-radius: 25px 0 0 25px; 
+    padding: 10px 20px; 
+    font-size: 1rem; 
+    width: 100%; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.input-group .btn:focus {
+    outline: none; 
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); 
+}
+
+.input-group .btn {
+    border-radius: 0 25px 25px 0; 
+    background-color: #007bff; 
+    color: white; 
+    border: 2px solid #007bff; 
+    padding: 10px 20px; 
+    transition: background-color 0.3s, transform 0.2s, border-color 0.3s; 
+}
+
+.modal-content {
+    border-radius: 10px; 
+}
+
+.modal-header {
+    background-color: #007bff; 
+    color: white; 
+}
+
+.modal-footer {
+    border-top: none; 
+}
+
+.modal-body {
+    font-size: 1.1rem; 
+}
+.modal-body img {
+    width: 100%; /* Faire en sorte que l'image occupe 100% de la largeur de la modal */
+    height: auto; /* Garder les proportions */
+    border-radius: 10px; /* Coins arrondis pour l'image */
+}
+
+
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.star {
+    font-size: 2rem; 
+    color: gray; 
+    cursor: pointer;
+}
+
+.star:hover,
+.star:hover ~ .star {
+    color: gold; 
+}
+
+.star.selected {
+    color: gold; 
+}

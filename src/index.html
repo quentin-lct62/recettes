@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Mes Recettes</title>
+</head>
+
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <h1 class="display-4">Mes Recettes</h1>
+        <div class="input-group mb-3 mt-3 mx-auto">
+            <input type="text" id="search" class="form-control" placeholder="Rechercher par ingrédient...">
+            <div class="input-group-append">
+                <button id="filterBtn" class="btn">Filtrer</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="toast" class="toast alert alert-success" style="display: none;">
+        <div class="toast-body"></div>
+    </div>
+
+    <main class="container my-4" id="recipesContainer">
+        <div class="row">
+            <!-- Les recettes seront affichées ici -->
+        </div>
+    </main>
+
+    <footer class="text-center py-4">
+        <p>&copy; 2024 Mes Recettes | Tous droits réservés</p>
+    </footer>
+
+    <!-- Modal pour afficher les détails de la recette -->
+    <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recipeModalLabel">Détails de la Recette</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Image de la recette" class="img-fluid">
+                    <h6 id="modalTitle"></h6>
+                    <p id="modalIngredients"></p>
+                    <p id="modalInstructions"></p>
+                    <div class="rating">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" onclick='addToFavorites(currentRecipe)'>Ajouter aux
+                        Favoris</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
