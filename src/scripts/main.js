@@ -129,50 +129,54 @@ function showNotification(message) {
     const toastBody = toast.querySelector('.toast-body');
     toastBody.textContent = message;
     toast.style.display = 'block';
-    toast.style.opacity = 1;
+    toast.style.opacity = 1; // Rend le toast visible
 
     setTimeout(() => {
-        toast.style.opacity = 0;
+        toast.style.opacity = 0; // Diminue l'opacité pour l'effet de disparition
         setTimeout(() => {
-            toast.style.display = 'none';
-        }, 500);
-    }, 3000);
+            toast.style.display = 'none'; // Cache le toast après la disparition
+        }, 500); // Temps d'attente avant de cacher le toast
+    }, 3000); // Affiche le toast pendant 3 secondes
 }
+
+
 
 // Ouvrir la modal avec les détails de la recette
 function openRecipeModal(recipe) {
     currentRecipe = recipe; // Mettez la recette actuelle dans une variable
+    document.getElementById('modalImage').src = recipe.image;
+    document.getElementById('modalTitle').innerText = recipe.title;
+    document.getElementById('modalIngredients').innerText = `Ingrédients : ${recipe.ingredients.join(', ')}`;
+    document.getElementById('modalInstructions').innerText = `Instructions : ${recipe.instructions}`;
 
-    // Vérifiez si les éléments existent avant de les utiliser
-    const modalImage = document.getElementById('modalImage');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalIngredients = document.getElementById('modalIngredients');
-    const modalInstructions = document.getElementById('modalInstructions');
+    const modal = $('#recipeModal');
+    setupRating(modal[0], recipe); // Configurez le système de notation
+    displayComments(recipe.title); // Afficher les commentaires de la recette
+    modal.modal('show'); // Ouvre le modal
 
-    if (modalImage && modalTitle && modalIngredients && modalInstructions) {
-        modalImage.src = recipe.image;
-        modalTitle.innerText = recipe.title;
-        modalIngredients.innerText = `Ingrédients : ${recipe.ingredients.join(', ')}`;
-        modalInstructions.innerText = `Instructions : ${recipe.instructions}`;
+    // Gérer l'envoi de commentaire
+    document.getElementById('submitCommentBtn').onclick = () => {
+        const commentInput = document.getElementById('commentInput');
+        const newComment = commentInput.value.trim();
 
-        const modal = $('#recipeModal');
-        setupRating(modal[0], recipe); // Configurez le système de notation
-        modal.modal('show'); // Ouvre le modal
-
-        // Afficher la note actuelle
-        const existingRatings = JSON.parse(localStorage.getItem('ratings')) || {};
-        const existingRating = existingRatings[recipe.title] || 0; // Récupérer la note existante
-        const stars = modal[0].querySelectorAll('.star');
-        stars.forEach(star => {
-            const value = star.getAttribute('data-value');
-            if (value <= existingRating) {
-                star.classList.add('selected'); // Marquer les étoiles sélectionnées
+        if (newComment) {
+            const comments = JSON.parse(localStorage.getItem('comments')) || {};
+            if (!comments[currentRecipe.title]) {
+                comments[currentRecipe.title] = []; // Créer un tableau pour la recette si ce n'est pas encore fait
             }
-        });
-    } else {
-        console.error("Un ou plusieurs éléments du modal n'ont pas été trouvés.");
-    }
+            comments[currentRecipe.title].push(newComment); // Ajouter le nouveau commentaire
+            localStorage.setItem('comments', JSON.stringify(comments)); // Sauvegarder les commentaires
+            commentInput.value = ''; // Réinitialiser le champ de texte
+            displayComments(currentRecipe.title); // Mettre à jour l'affichage des commentaires
+
+            // Afficher une notification
+            showNotification('Commentaire ajouté avec succès !'); // Notification de succès
+        } else {
+            showNotification('Veuillez entrer un commentaire.'); // Alerte si le champ est vide
+        }
+    };
 }
+
 
 
 // Écouteur pour la recherche en temps réel
@@ -221,6 +225,113 @@ document.getElementById('logoutBtn').addEventListener('click', function() {
     window.location.href = 'login.html'; // Rediriger vers la page de connexion
 });
 
+function displayComments(recipeTitle) {
+    const commentsList = document.getElementById('commentsList');
+    commentsList.innerHTML = ''; // Vider la liste des commentaires
+    const comments = JSON.parse(localStorage.getItem('comments')) || {};
+    
+    if (comments[recipeTitle]) {
+        comments[recipeTitle].forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('border-bottom', 'pb-2', 'mb-2');
+            commentDiv.innerText = comment; // Affiche chaque commentaire
+            commentsList.appendChild(commentDiv);
+        });
+    }
+}
+// Modifier la soumission de commentaire pour inclure la date
+document.getElementById('submitCommentBtn').addEventListener('click', () => {
+    const commentInput = document.getElementById('commentInput');
+    const newComment = commentInput.value.trim(); // Vérifiez si le commentaire est vide
+
+    if (newComment) {
+        const comments = JSON.parse(localStorage.getItem('comments')) || {};
+        if (!comments[currentRecipe.title]) {
+            comments[currentRecipe.title] = []; // Créer un tableau pour la recette si ce n'est pas encore fait
+        }
+
+        // Ajoutez la date et l'heure au commentaire
+        const timestamp = new Date().toLocaleString(); // Format de la date
+        comments[currentRecipe.title].push({ text: newComment, date: timestamp }); // Stockez l'objet avec le commentaire et la date
+        localStorage.setItem('comments', JSON.stringify(comments)); // Sauvegarder les commentaires
+        commentInput.value = ''; // Réinitialiser le champ de texte
+        displayComments(currentRecipe.title); // Mettre à jour l'affichage des commentaires
+
+        // Afficher une notification
+        showNotification('Commentaire ajouté avec succès !'); // Notification de succès
+    } else {
+        // Afficher une notification si le champ est vide
+        showNotification('Veuillez entrer un commentaire.'); 
+    }
+});
+
+
+document.getElementById('submitCommentBtn').addEventListener('click', () => {
+    const commentInput = document.getElementById('commentInput');
+    const newComment = commentInput.value.trim();
+    
+    if (newComment) {
+        const comments = JSON.parse(localStorage.getItem('comments')) || {};
+        if (!comments[currentRecipe.title]) {
+            comments[currentRecipe.title] = []; // Créer un tableau pour la recette si ce n'est pas encore fait
+        }
+        comments[currentRecipe.title].push(newComment); // Ajouter le nouveau commentaire
+        localStorage.setItem('comments', JSON.stringify(comments)); // Sauvegarder les commentaires
+        commentInput.value = ''; // Réinitialiser le champ de texte
+        displayComments(currentRecipe.title); // Mettre à jour l'affichage des commentaires
+
+        // Afficher une notification
+        showNotification('Commentaire ajouté avec succès !'); // Notification de succès
+    } else {
+        showNotification('Veuillez entrer un commentaire.'); // Alerte si le champ est vide
+    }
+});
+function displayComments(recipeTitle) {
+    const comments = JSON.parse(localStorage.getItem('comments')) || {};
+    const commentsList = document.getElementById('commentsList');
+    commentsList.innerHTML = ''; // Vider la liste avant d'afficher les commentaires
+
+    if (comments[recipeTitle]) {
+        comments[recipeTitle].forEach((comment, index) => {
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('border-bottom', 'pb-2', 'mb-2'); // Ajouter des styles
+            commentDiv.innerHTML = `
+                ${comment.text} <br>
+                <small class="text-muted">${comment.date}</small> <!-- Afficher la date -->
+            `;
+
+            // Ajoutez le bouton de suppression
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerText = 'Supprimer';
+            deleteBtn.classList.add('btn', 'btn-danger', 'btn-sm', 'ml-2');
+            deleteBtn.onclick = () => {
+                deleteComment(recipeTitle, index);
+            };
+
+            commentDiv.appendChild(deleteBtn); // Ajouter le bouton à la div du commentaire
+            commentsList.appendChild(commentDiv);
+        });
+    } else {
+        commentsList.innerHTML = '<p>Aucun commentaire pour cette recette.</p>';
+    }
+}
+
+
+// Fonction pour supprimer un commentaire
+function deleteComment(recipeTitle, commentIndex) {
+    const comments = JSON.parse(localStorage.getItem('comments')) || {};
+    comments[recipeTitle].splice(commentIndex, 1); // Supprimer le commentaire à l'index donné
+
+    // Si le tableau est vide après suppression, supprimer la clé de l'objet
+    if (comments[recipeTitle].length === 0) {
+        delete comments[recipeTitle];
+    }
+
+    localStorage.setItem('comments', JSON.stringify(comments)); // Sauvegarder les commentaires
+    displayComments(recipeTitle); // Mettre à jour l'affichage des commentaires
+
+    showNotification('Commentaire supprimé avec succès !'); // Notification de succès
+}
 
 
 // Appeler la fonction pour charger les recettes

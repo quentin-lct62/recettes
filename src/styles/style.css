@@ -132,3 +132,7 @@ header {
 .star.selected {
     color: gold; 
 }
+.comment {
+    border-bottom: 1px solid #ddd; /* Séparation entre les commentaires */
+    padding: 10px 0; /* Espacement */
+}
