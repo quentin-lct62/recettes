@@ -175,9 +175,6 @@ function openRecipeModal(recipe) {
 }
 
 
-
-
-
 // Écouteur pour la recherche en temps réel
 searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.trim().toLowerCase();
@@ -208,6 +205,21 @@ function setupRating(modal, recipe) {
         });
     });
 }
+
+
+// Après avoir vérifié la connexion
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+if (currentUser) {
+    document.getElementById('user-info').style.display = 'block';
+    document.getElementById('welcome-message').innerText = `Bienvenue, ${currentUser.username}!`;
+}
+
+// Fonction de déconnexion
+document.getElementById('logoutBtn').addEventListener('click', function() {
+    localStorage.removeItem('currentUser');
+    alert('Déconnexion réussie!');
+    window.location.href = 'login.html'; // Rediriger vers la page de connexion
+});
 
 
 
