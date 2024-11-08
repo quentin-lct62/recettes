@@ -12,6 +12,7 @@
 <body>
     <header class="bg-primary text-white text-center py-4">
         <h1 class="display-4">Mes Recettes</h1>
+<<<<<<< HEAD
         <div class="input-group mb-3 mt-3 mx-auto">
             <input type="text" id="search" class="form-control" placeholder="Rechercher par ingrédient...">
             <div class="input-group-append">
@@ -39,6 +40,48 @@
         <div class="row">
             <!-- Les recettes seront affichées ici -->
         </div>
+=======
+        <div class="input-group mb-3 mt-3 mx-auto" style="max-width: 500px;">
+            <input type="text" id="search" class="form-control" placeholder="Rechercher par ingrédient...">
+            <div class="input-group-append">
+                <button id="filterBtn" class="btn btn-secondary">Filtrer</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="text-center my-3">
+        <a href="register.html" class="btn btn-link">S'inscrire</a>
+        <a href="login.html" class="btn btn-link">Se connecter</a>
+        <a href="profile.html" class="btn btn-link">Mon Profil</a>
+        <a href="#" class="btn btn-link" onclick="toggleFavorites()">Mes Favoris</a>
+        <div id="user-info" style="display: none;">
+            <span id="welcome-message"></span>
+            <button id="logoutBtn" class="btn btn-danger">Déconnexion</button>
+        </div>
+    </nav>
+
+    <!-- Toast pour les notifications -->
+    <div id="toast" class="toast alert alert-success position-fixed" style="top: 20px; right: 20px; display: none;">
+        <div class="toast-body"></div>
+    </div>
+
+    <main class="container my-4">
+        <!-- Section des recettes principales -->
+        <div id="recipesContainer" class="row">
+            <!-- Les recettes seront affichées ici -->
+        </div>
+        <!-- Zone de pagination -->
+        <div id="paginationControls" class="d-flex justify-content-center mt-4">
+            <!-- Les boutons de pagination seront affichés ici -->
+        </div>
+        <!-- Section pour afficher les favoris -->
+        <div id="favoritesSection" class="row" style="display: none;">
+            <h3 class="col-12">Mes Recettes Favorites</h3>
+            <div id="favoritesContainer" class="row">
+                <!-- Les recettes favorites seront affichées ici -->
+            </div>
+        </div>
+>>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
     </main>
 
     <footer class="text-center py-4">
@@ -50,17 +93,32 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+<<<<<<< HEAD
                 <div class="modal-header">
                     <h5 class="modal-title" id="recipeModalLabel">Détails de la Recette</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+=======
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="recipeModalLabel">Détails de la Recette</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+>>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+<<<<<<< HEAD
                     <img id="modalImage" src="" alt="Image de la recette" class="img-fluid">
                     <h6 id="modalTitle"></h6>
                     <p id="modalIngredients"></p>
                     <p id="modalInstructions"></p>
+=======
+                    <img id="modalImage" src="" alt="Image de la recette" class="img-fluid mb-3">
+                    <h6 id="modalTitle"></h6>
+                    <p id="modalIngredients"></p>
+                    <p id="modalInstructions"></p>
+
+                    <!-- Section pour les étoiles de notation -->
+>>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
                     <div class="rating">
                         <span class="star" data-value="1">★</span>
                         <span class="star" data-value="2">★</span>
@@ -68,6 +126,7 @@
                         <span class="star" data-value="4">★</span>
                         <span class="star" data-value="5">★</span>
                     </div>
+<<<<<<< HEAD
                     <!-- Ajoutez ceci à la section modal-body de recipeModal -->
                     <div id="commentsSection" class="mt-3">
                         <h5>Commentaires :</h5>
@@ -78,6 +137,20 @@
                         <button class="btn btn-primary mt-2" id="submitCommentBtn">Soumettre</button>
 
                     </div>
+=======
+
+                    <!-- Section de la modal avec les commentaires -->
+                    <div id="commentsSection" class="mt-4">
+                        <h5>Commentaires :</h5>
+                        <div id="commentsList" class="mb-3">
+                            <!-- Les commentaires seront chargés ici -->
+                        </div>
+                        <textarea id="commentInput" class="form-control"
+                            placeholder="Laissez un commentaire..."></textarea>
+                        <button class="btn btn-primary mt-2" id="submitCommentBtn">Soumettre</button>
+                    </div>
+
+>>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -88,9 +161,13 @@
         </div>
     </div>
 
+<<<<<<< HEAD
 
 
 
+=======
+    <!-- Liens JavaScript pour Bootstrap et votre fichier principal -->
+>>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
