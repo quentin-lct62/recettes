@@ -2,14 +2,20 @@ const recipesContainer = document.getElementById('recipesContainer');
 const searchInput = document.getElementById('search');
 const filterBtn = document.getElementById('filterBtn');
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 // Exemple de recettes fictives avec images de Picsum
 =======
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 const paginationContainer = document.getElementById('paginationControls');
 const favoritesContainer = document.getElementById('favoritesContainer');
 const favoritesSection = document.getElementById('favoritesSection');
 
+<<<<<<< HEAD
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 const recipes = [
     {
         title: "Recette de Poulet au Curry",
@@ -23,6 +29,7 @@ const recipes = [
         ingredients: ["Quinoa", "Tomates", "Concombre", "Feta"],
         instructions: "Cuire le quinoa, ajouter les légumes coupés et la feta."
     },
+<<<<<<< HEAD
 <<<<<<< HEAD
     {
         title: "Tarte aux Pommes",
@@ -54,6 +61,8 @@ function displayRecipes(filteredRecipes) {
 
     recipesToDisplay.forEach(recipe => {
 =======
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
     // Ajoutez d'autres recettes si nécessaire
 ];
 
@@ -71,7 +80,10 @@ function displayRecipes(filteredRecipes) {
     const paginatedRecipes = recipesToDisplay.slice(start, end);
 
     paginatedRecipes.forEach(recipe => {
+<<<<<<< HEAD
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
         const recipeDiv = document.createElement('div');
         recipeDiv.classList.add('col-md-4', 'mb-4');
         recipeDiv.innerHTML = `
@@ -82,14 +94,19 @@ function displayRecipes(filteredRecipes) {
                     <p class="card-text">Ingrédients : ${recipe.ingredients.join(', ')}</p>
                     <button class="btn btn-primary mt-auto" onclick='openRecipeModal(${JSON.stringify(recipe)})'>Voir Détails</button>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     <button class="btn btn-secondary mt-2" onclick='addToFavorites(${JSON.stringify(recipe)})'>Ajouter aux Favoris</button>
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+                    <button class="btn btn-secondary mt-2" onclick='addToFavorites(${JSON.stringify(recipe)})'>Ajouter aux Favoris</button>
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
                 </div>
             </div>
         `;
         recipesContainer.appendChild(recipeDiv);
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     displayFavorites();
@@ -97,6 +114,8 @@ function displayRecipes(filteredRecipes) {
 
 // Filtrer les recettes en fonction de l'ingrédient saisi
 =======
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
     displayPaginationControls(recipesToDisplay.length);
 }
 
@@ -137,7 +156,10 @@ function changePage(page) {
 }
 
 // Fonction pour filtrer les recettes
+<<<<<<< HEAD
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 filterBtn.addEventListener('click', () => {
     const searchTerm = searchInput.value.trim().toLowerCase();
     if (!searchTerm) {
@@ -150,6 +172,7 @@ filterBtn.addEventListener('click', () => {
     displayRecipes(filteredRecipes);
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // Fonction pour afficher les favoris
 function displayFavorites() {
@@ -189,6 +212,8 @@ function removeFromFavorites(recipeTitle) {
 
 // Ajouter une recette aux favoris
 =======
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 // Fonction pour ouvrir la modal de recette
 function openRecipeModal(recipe) {
     currentRecipe = recipe;
@@ -203,7 +228,10 @@ function openRecipeModal(recipe) {
 }
 
 // Fonction pour gérer les favoris
+<<<<<<< HEAD
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 function addToFavorites(recipe) {
     if (!favoriteRecipes.find(fav => fav.title === recipe.title)) {
         favoriteRecipes.push(recipe);
@@ -214,6 +242,7 @@ function addToFavorites(recipe) {
     }
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // Afficher une notification
 function showNotification(message) {
@@ -284,6 +313,9 @@ searchInput.addEventListener('input', () => {
 =======
 // Fonction pour gérer la notation
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+// Fonction pour gérer la notation
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 function setupRating(modal, recipe) {
     const stars = modal.querySelectorAll('.star');
     stars.forEach(star => {
@@ -291,14 +323,18 @@ function setupRating(modal, recipe) {
             const rating = star.getAttribute('data-value');
             showNotification(`Vous avez noté "${recipe.title}" avec ${rating} étoile(s) !`);
 <<<<<<< HEAD
+<<<<<<< HEAD
             
             // Enregistrer la note dans localStorage
 =======
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
             const existingRatings = JSON.parse(localStorage.getItem('ratings')) || {};
             existingRatings[recipe.title] = rating;
             localStorage.setItem('ratings', JSON.stringify(existingRatings));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             // Mettre à jour l'affichage des étoiles
             stars.forEach(s => s.classList.remove('selected')); // Réinitialiser les étoiles
@@ -309,11 +345,17 @@ function setupRating(modal, recipe) {
             for (let i = 0; i < rating; i++) {
                 stars[i].classList.add('selected');
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+            stars.forEach(s => s.classList.remove('selected'));
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('selected');
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
             }
         });
     });
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 // Après avoir vérifié la connexion
@@ -442,6 +484,9 @@ function deleteComment(recipeTitle, commentIndex) {
 // Appeler la fonction pour charger les recettes
 =======
 // Fonction pour afficher les commentaires avec options de modification et suppression
+=======
+// Fonction pour afficher les commentaires
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 function displayComments(recipeTitle) {
     const comments = JSON.parse(localStorage.getItem('comments')) || {};
     const commentsList = document.getElementById('commentsList');
@@ -522,6 +567,10 @@ function deleteComment(recipeTitle, commentIndex) {
     showNotification('Commentaire supprimé avec succès !');
 }
 
+<<<<<<< HEAD
+=======
+// Notification
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 function showNotification(message) {
     const toast = document.getElementById('toast');
     const toastBody = toast.querySelector('.toast-body');
@@ -536,6 +585,7 @@ function showNotification(message) {
         }, 500);
     }, 3000);
 }
+<<<<<<< HEAD
 function toggleFavorites() {
     if (favoritesSection.style.display === 'none' || !favoritesSection.style.display) {
         displayFavorites();
@@ -550,12 +600,38 @@ function toggleFavorites() {
 }
 function displayFavorites() {
     favoritesContainer.innerHTML = '';
+=======
+
+// Fonction pour basculer l'affichage des favoris
+function toggleFavorites() {
+    const recipesContainer = document.getElementById('recipesContainer');
+    const favoritesSection = document.getElementById('favoritesSection');
+
+    if (favoritesSection.style.display === 'none' || favoritesSection.style.display === '') {
+        displayFavorites();
+        favoritesSection.style.display = 'flex';
+        recipesContainer.style.display = 'none';
+    } else {
+        favoritesSection.style.display = 'none';
+        recipesContainer.style.display = 'flex';
+    }
+}
+
+// Fonction pour afficher les favoris
+function displayFavorites() {
+    favoritesContainer.innerHTML = '';
+
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
     if (favoriteRecipes.length === 0) {
         favoritesContainer.innerHTML = '<p class="col-12 text-center">Aucune recette favorite ajoutée.</p>';
     } else {
         favoriteRecipes.forEach(recipe => {
             const recipeDiv = document.createElement('div');
+<<<<<<< HEAD
             recipeDiv.classList.add('col-md-4', 'mb-4');
+=======
+            recipeDiv.classList.add('col-md-12', 'mb-4');
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
             recipeDiv.innerHTML = `
                 <div class="card h-100 d-flex flex-column">
                     <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">
@@ -570,14 +646,31 @@ function displayFavorites() {
         });
     }
 }
+<<<<<<< HEAD
+=======
+
+// Fonction pour supprimer une recette des favoris
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 function removeFromFavorites(recipeTitle) {
     const updatedFavorites = favoriteRecipes.filter(fav => fav.title !== recipeTitle);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     favoriteRecipes.splice(0, favoriteRecipes.length, ...updatedFavorites);
     displayFavorites();
+<<<<<<< HEAD
     showNotification(`${recipeTitle} a été supprimé de vos favoris !`);
 }
 
 // Charger les recettes au démarrage
 >>>>>>> Ajout des fonctionnalités de favoris, pagination, et gestion des commentaires
+=======
+}
+
+// Initialiser les sections favorites
+document.addEventListener("DOMContentLoaded", () => {
+    favoritesSection.style.display = 'none'; // Assurez-vous que cette section est masquée au départ
+    displayFavorites(); // Pour initialiser l'affichage
+});
+
+// Charger les recettes au démarrage
+>>>>>>> Ajout des fichiers initiaux : README, LICENSE, et src/
 displayRecipes();
